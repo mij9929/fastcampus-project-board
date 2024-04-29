@@ -26,9 +26,8 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy"),
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article  extends AuditingFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,16 +40,6 @@ public class Article {
     @OrderBy("id")
     @ToString.Exclude
     private final Set<ArticleComment> articleComments = new HashSet<>();
-
-
-    /* createdAt, CreatedBy, LastModifiedDate, LastModifiedBy
-:  데이터가 생성되거나, 수정될 때, 생성 및 수정한 사용자의 id를 넣어줌.
-* https://velog.io/@minji104/CreatedBy-UpdatedBy-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84
-* */
-    @CreatedDate @Column(nullable = false)private LocalDateTime createdAt; //
-    @CreatedDate @Column(nullable = false, length = 100) private String createdBy;
-    @LastModifiedDate @Column(nullable = false)private LocalDateTime modifiedAt;
-    @LastModifiedBy @Column(nullable = false, length = 100)private String modifiedBy;
 
     protected Article(){
     }
