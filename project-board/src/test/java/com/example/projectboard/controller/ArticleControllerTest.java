@@ -38,7 +38,7 @@ class ArticleControllerTest {
     public void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
         mvc.perform(get("/articles/1"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("articleComments"))
                 .andExpect(model().attributeExists("article"));
@@ -51,7 +51,7 @@ class ArticleControllerTest {
         mvc.perform(get("articles/search"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("articles/search"))
-                .andExpect(content().contentType(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
     }
 
     @Disabled("구현 중")
@@ -61,7 +61,7 @@ class ArticleControllerTest {
         mvc.perform(get("articles/search-hashtag"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("articles/search-hashtag"))
-                .andExpect(content().contentType(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
     }
 
 }

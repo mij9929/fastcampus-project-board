@@ -35,6 +35,9 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+
 
 
 	// queryDSL 설정
@@ -66,3 +69,6 @@ sourceSets {
 clean {
 	delete file(generated)
 }
+
+compileJava.options.encoding = 'UTF-8'
+compileJava.options.compilerArgs = ['-parameters']
