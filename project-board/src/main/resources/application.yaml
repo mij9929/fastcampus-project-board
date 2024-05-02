@@ -34,3 +34,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa.hibernate.ddl-auto: create
   sql.init.mode: always
+
+  thymeleaf3:
+    decoupled-logic: true
+

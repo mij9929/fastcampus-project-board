@@ -5,6 +5,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class AuditingFields {
+public abstract class AuditingFields {
 
     /* createdAt, CreatedBy, LastModifiedDate, LastModifiedBy
 :  데이터가 생성되거나, 수정될 때, 생성 및 수정한 사용자의 id를 넣어줌.
@@ -26,18 +27,18 @@ public class AuditingFields {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt; //
+    protected LocalDateTime createdAt; //
 
-    @CreatedDate
+    @CreatedBy
     @Column(nullable = false, length = 100, updatable = false)
-    private String createdBy;
+    protected String createdBy;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
     @Column(nullable = false)
-    private LocalDateTime modifiedAt;
+    protected LocalDateTime modifiedAt;
 
     @LastModifiedBy
     @Column(nullable = false, length = 100)
-    private String modifiedBy;
+    protected String modifiedBy;
 }
