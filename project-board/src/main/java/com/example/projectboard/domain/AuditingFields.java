@@ -5,6 +5,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -28,7 +29,7 @@ public abstract class AuditingFields {
     @Column(nullable = false, updatable = false)
     protected LocalDateTime createdAt; //
 
-    @CreatedDate
+    @CreatedBy
     @Column(nullable = false, length = 100, updatable = false)
     protected String createdBy;
 
